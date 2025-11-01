@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Learning Hub - Educational Technology for All</title>
+    <meta name="description" content="Transform any study material for true accessibility. Features include auto-text simplification, text-to-speech, dyslexia-friendly fonts, and adaptive color contrast.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #0066cc;
+            --color-secondary: #00b4b4;
+            --color-background: #f8fafc;
+            --color-text: #1a202c;
+            --color-text-muted: #64748b;
+            --color-border: #e2e8f0;
+            --color-card: #ffffff;
+            --shadow-soft: 0 2px 8px -2px rgba(0, 102, 204, 0.1);
+            --shadow-medium: 0 4px 16px -4px rgba(0, 102, 204, 0.15);
+            --shadow-strong: 0 8px 32px -8px rgba(0, 102, 204, 0.2);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-background);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .header-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .logo-text h1 {
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .logo-text p {
+            font-size: 11px;
+            color: var(--color-text-muted);
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--color-text-muted);
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--color-primary);
+        }
+
+        .btn {
+            padding: 0.5rem 1.5rem;
+            border-radius: 6px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: white;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .btn-primary:hover {
+            background: #0052a3;
+            box-shadow: var(--shadow-medium);
+            transform: translateY(-1px);
+        }
+
+        .btn-hero {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: white;
+            padding: 0.75rem 2rem;
+            font-size: 16px;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-hero:hover {
+            opacity: 0.9;
+            box-shadow: var(--shadow-strong);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: white;
+            color: var(--color-primary);
+            border: 1px solid var(--color-border);
+            padding: 0.75rem 2rem;
+            font-size: 16px;
+        }
+
+        .btn-outline:hover {
+            background: var(--color-background);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem 2rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.05), rgba(248, 250, 252, 1), rgba(0, 180, 180, 0.05));
+            z-index: -1;
+        }
+
+        .hero-circle-1 {
+            position: absolute;
+            top: 10%;
+            right: 10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(0, 102, 204, 0.1);
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+        }
+
+        .hero-circle-2 {
+            position: absolute;
+            bottom: 10%;
+            left: 10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(0, 180, 180, 0.1);
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(0, 102, 204, 0.1);
+            color: var(--color-primary);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .hero h2 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
+            color: var(--color-text-muted);
+            max-width: 900px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .hero-note {
+            font-size: 14px;
+            color: var(--color-text-muted);
+            margin-top: 2rem;
+        }
+
+        /* Section */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h3 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.25rem;
+            color: var(--color-text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--color-card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-soft);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-card:hover {
+            box-shadow: var(--shadow-medium);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.1), rgba(0, 180, 180, 0.1));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--color-primary);
+            font-size: 24px;
+        }
+
+        .feature-card h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card p {
+            color: var(--color-text-muted);
+            line-height: 1.6;
+        }
+
+        /* Upload Section */
+        .upload-card {
+            background: var(--color-card);
+            padding: 4rem 3rem;
+            border: 2px dashed rgba(0, 102, 204, 0.3);
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: var(--shadow-medium);
+            background: linear-gradient(135deg, var(--color-card), rgba(0, 102, 204, 0.02));
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .upload-card:hover {
+            border-color: rgba(0, 102, 204, 0.5);
+        }
+
+        .upload-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.2), rgba(0, 180, 180, 0.2));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            color: var(--color-primary);
+            font-size: 40px;
+        }
+
+        .upload-card h4 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-card p {
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .file-types {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            font-size: 14px;
+            color: var(--color-text-muted);
+        }
+
+        .file-type {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Use Cases */
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .use-case-card {
+            background: var(--color-card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-medium);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .use-case-card:hover {
+            box-shadow: var(--shadow-strong);
+            transform: translateY(-8px);
+        }
+
+        .use-case-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .use-case-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+        }
+
+        .use-case-badge {
+            padding: 0.375rem 0.875rem;
+            background: rgba(0, 102, 204, 0.1);
+            color: var(--color-primary);
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .use-case-card h4 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: white;
+            padding: 5rem 3rem;
+            border-radius: 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-strong);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .cta-circle-1 {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 250px;
+            height: 250px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            filter: blur(60px);
+        }
+
+        .cta-circle-2 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 250px;
+            height: 250px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            filter: blur(60px);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section h3 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .cta-section p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--color-primary);
+            padding: 0.75rem 2rem;
+            font-size: 16px;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-white:hover {
+            background: #f8fafc;
+            box-shadow: var(--shadow-strong);
+        }
+
+        .btn-outline-white {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem 2rem;
+            font-size: 16px;
+        }
+
+        .btn-outline-white:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.02);
+            border-top: 1px solid var(--color-border);
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section h5 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--color-primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: var(--color-text);
+        }
+
+        .social-link:hover {
+            background: rgba(0, 102, 204, 0.1);
+            color: var(--color-primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+            color: var(--color-text-muted);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 3rem 1rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .feature-grid,
+            .use-case-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn-hero,
+            .btn-outline {
+                width: 100%;
+            }
+
+            .cta-section {
+                padding: 3rem 2rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">♿</div>
+                <div class="logo-text">
+                    <h1>Accessibility Hub</h1>
+                    <p>Learning for All</p>
+                </div>
+            </div>
+            <nav>
+                <a href="#features">Features</a>
+                <a href="#upload">Upload</a>
+                <a href="#use-cases">Use Cases</a>
+                <button class="btn btn-primary">Sign In</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-circle-1"></div>
+        <div class="hero-circle-2"></div>
+        <div class="hero-content animate-in">
+            <div class="hero-badge">Educational Technology</div>
+            <h2>Accessibility Learning Hub</h2>
+            <p>Transform any study material for true accessibility. Advanced features include auto-text simplification, text-to-speech, dyslexia-friendly fonts, and adaptive color contrast for all learners.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-hero" onclick="alert('Get Started clicked!')">
+                    Get Started →
+                </button>
+                <button class="btn btn-outline" onclick="alert('Upload clicked!')">
+                    📤 Upload Materials
+                </button>
+            </div>
+            <div class="hero-note">Supports PDFs, videos, slides, and web articles</div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" style="background: linear-gradient(180deg, var(--color-background), rgba(0, 102, 204, 0.02));">
+        <div class="container">
+            <div class="section-header">
+                <h3>Accessibility Features</h3>
+                <p>Comprehensive tools designed to make learning materials accessible to everyone</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h4>Auto-Text Simplification</h4>
+                    <p>Cognitive disabilities support with context-preserving simplification that maintains pedagogical rigor.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔊</div>
+                    <h4>Text-to-Speech</h4>
+                    <p>High-quality audio narration using synthetic voices. Listen to any content with natural-sounding speech.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h4>Dyslexia-Friendly Fonts</h4>
+                    <p>Dynamic font adjustments optimized for readers with dyslexia, improving readability and comprehension.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🖼️</div>
+                    <h4>Image ALT Checking</h4>
+                    <p>Automated image-to-ALT text generation ensuring all visual content is accessible to screen readers.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h4>Adaptive Color Contrast</h4>
+                    <p>Automatically adjusts color contrast ratios for low-vision users, meeting WCAG accessibility standards.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👁️</div>
+                    <h4>Visual Enhancement</h4>
+                    <p>Customizable visual settings including text size, spacing, and background colors for optimal reading.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload Section -->
+    <section id="upload">
+        <div class="container">
+            <div class="section-header">
+                <h3>Upload Your Materials</h3>
+                <p>Drag and drop your files or paste a URL. Our system delivers accessible versions on demand.</p>
+            </div>
+            <div class="upload-card" onclick="alert('File upload would open here!')">
+                <div class="upload-icon">📤</div>
+                <h4>Drop files here or click to browse</h4>
+                <p>Supports multiple file formats and URLs</p>
+                <button class="btn btn-hero">Select Files</button>
+                <div class="file-types">
+                    <div class="file-type">📄 PDFs</div>
+                    <div class="file-type">🎬 Videos</div>
+                    <div class="file-type">📊 Slides</div>
+                    <div class="file-type">🌐 Web Articles</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section id="use-cases" style="background: linear-gradient(180deg, rgba(0, 102, 204, 0.02), var(--color-background));">
+        <div class="container">
+            <div class="section-header">
+                <h3>Real-World Use Cases</h3>
+                <p>See how our platform transforms complex educational content into accessible learning experiences</p>
+            </div>
+            <div class="use-case-grid">
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <div class="use-case-icon">📐</div>
+                        <div class="use-case-badge">Mathematics</div>
+                    </div>
+                    <h4>Technical Reports with LaTeX</h4>
+                    <p>Multi-page technical reports with complex math equations are automatically converted to spoken equations with step-by-step audio walkthroughs.</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <div class="use-case-icon">🧪</div>
+                        <div class="use-case-badge">Science</div>
+                    </div>
+                    <h4>Chemistry Tutorials</h4>
+                    <p>System auto-describes molecular diagrams for visually impaired users, making complex chemistry concepts accessible through detailed verbal descriptions.</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <div class="use-case-icon">📚</div>
+                        <div class="use-case-badge">Research</div>
+                    </div>
+                    <h4>Research Articles</h4>
+                    <p>Input a complex research article and receive an instant simplified version that's readable with dyslexia-friendly fonts and a playable audio narrative.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section>
+        <div class="container">
+            <div class="cta-section">
+                <div class="cta-circle-1"></div>
+                <div class="cta-circle-2"></div>
+                <div class="cta-content">
+                    <div class="cta-badge">✨ Start Transforming Materials Today</div>
+                    <h3>Make Learning Accessible<br>for Everyone</h3>
+                    <p>Join educators and institutions using our platform to create truly inclusive learning experiences.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-white" onclick="alert('Sign up clicked!')">
+                            Get Started Free →
+                        </button>
+                        <button class="btn btn-outline-white" onclick="alert('Demo clicked!')">
+                            View Demo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <div class="logo-icon">♿</div>
+                    <div class="logo-text">
+                        <h1>Accessibility Hub</h1>
+                        <p>Learning for All</p>
+                    </div>
+                </div>
+                <p style="color: var(--color-text-muted); font-size: 14px; margin-top: 1rem;">Making education accessible to every learner through innovative technology.</p>
+            </div>
+            <div class="footer-section">
+                <h5>Platform</h5>
+                <ul>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">How It Works</a></li>
+                    <li><a href="#">Pricing</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h5>Resources</h5>
+                <ul>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">API Reference</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h5>Connect</h5>
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                    <a href="#" class="social-link" aria-label="LinkedIn">💼</a>
+                    <a href="#" class="social-link" aria-label="GitHub">💻</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Accessibility Learning Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.feature-card, .use-case-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(card);
+        });
+
+        // Add hover effect to buttons
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+            });
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        console.log('Accessibility Learning Hub initialized!');
+    </script>
+</body>
+</html>
