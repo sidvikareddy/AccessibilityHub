@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Learning Hub - Educational Technology for All</title>
+    <meta name="description" content="Transform any study material for true accessibility. Features include auto-text simplification, text-to-speech, dyslexia-friendly fonts, and adaptive color contrast.">
+    
+    <!-- You can move this CSS to static/style.css later -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #0066cc;
+            --color-secondary: #00b4b4;
+            --color-background: #f8fafc;
+            --color-text: #1a202c;
+            --color-text-muted: #64748b;
+            --color-border: #e2e8f0;
+            --color-card: #ffffff;
+            --shadow-soft: 0 2px 8px -2px rgba(0, 102, 204, 0.1);
+            --shadow-medium: 0 4px 16px -4px rgba(0, 102, 204, 0.15);
+            --shadow-strong: 0 8px 32px -8px rgba(0, 102, 204, 0.2);
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-background);
+        }
+
+        /* --- Paste all your original CSS here --- */
+        /* (I shortened for readability, you can keep your full CSS block) */
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav { display: none; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- ✅ Paste all your existing HTML (header, hero, sections, footer) exactly as is -->
+    <!-- Everything stays identical up to before the <script> tag. -->
+
+    <!-- ✅ Remove your inline <script> tag -->
+    <!-- Instead, link this external file: -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
