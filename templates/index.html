@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Learning Hub - Educational Technology for All</title>
+    <meta name="description" content="Transform any study material for true accessibility. Features include auto-text simplification, text-to-speech, dyslexia-friendly fonts, and adaptive color contrast.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">♿</div>
+                <div class="logo-text">
+                    <h1>Accessibility Hub</h1>
+                    <p>Learning for All</p>
+                </div>
+            </div>
+            <nav>
+                <a href="#features">Features</a>
+                <a href="#upload">Upload</a>
+                <a href="#use-cases">Use Cases</a>
+                <button class="btn btn-primary">Sign In</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-circle-1"></div>
+        <div class="hero-circle-2"></div>
+        <div class="hero-content animate-in">
+            <div class="hero-badge">Educational Technology</div>
+            <h2>Accessibility Learning Hub</h2>
+            <p>Transform any study material for true accessibility. Advanced features include auto-text simplification, text-to-speech, dyslexia-friendly fonts, and adaptive color contrast for all learners.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-hero" onclick="alert('Get Started clicked!')">
+                    Get Started →
+                </button>
+                <button class="btn btn-outline" onclick="alert('Upload clicked!')">
+                    📤 Upload Materials
+                </button>
+            </div>
+            <div class="hero-note">Supports PDFs, videos, slides, and web articles</div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" style="background: linear-gradient(180deg, var(--color-background), rgba(0, 102, 204, 0.02));">
+        <div class="container">
+            <div class="section-header">
+                <h3>Accessibility Features</h3>
+                <p>Comprehensive tools designed to make learning materials accessible to everyone</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h4>Auto-Text Simplification</h4>
+                    <p>Cognitive disabilities support with context-preserving simplification that maintains pedagogical rigor.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔊</div>
+                    <h4>Text-to-Speech</h4>
+                    <p>High-quality audio narration using synthetic voices. Listen to any content with natural-sounding speech.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h4>Dyslexia-Friendly Fonts</h4>
+                    <p>Dynamic font adjustments optimized for readers with dyslexia, improving readability and comprehension.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🖼️</div>
+                    <h4>Image ALT Checking</h4>
+                    <p>Automated image-to-ALT text generation ensuring all visual content is accessible to screen readers.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h4>Adaptive Color Contrast</h4>
+                    <p>Automatically adjusts color contrast ratios for low-vision users, meeting WCAG accessibility standards.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👁️</div>
+                    <h4>Visual Enhancement</h4>
+                    <p>Customizable visual settings including text size, spacing, and background colors for optimal reading.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload Section -->
+    <section id="upload">
+        <div class="container">
+            <div class="section-header">
+                <h3>Upload Your Materials</h3>
+                <p>Drag and drop your files or paste a URL. Our system delivers accessible versions on demand.</p>
+            </div>
+            <div class="upload-card" onclick="alert('File upload would open here!')">
+                <div class="upload-icon">📤</div>
+                <h4>Drop files here or click to browse</h4>
+                <p>Supports multiple file formats and URLs</p>
+                <button class="btn btn-hero">Select Files</button>
+                <div class="file-types">
+                    <div class="file-type">📄 PDFs</div>
+                    <div class="file-type">🎬 Videos</div>
+                    <div class="file-type">📊 Slides</div>
+                    <div class="file-type">🌐 Web Articles</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section id="use-cases" style="background: white;">
+        <div class="container">
+            <div class="section-header">
+                <h3>Designed for Real Learners</h3>
+                <p>Purpose-built for schools, universities, and independent learners who require accessible content.</p>
+            </div>
+            <div class="use-case-grid">
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <div class="use-case-icon">🏫</div>
+                        <div class="use-case-badge">K-12</div>
+                    </div>
+                    <h4>Classroom-Ready Materials</h4>
+                    <p>Teachers can upload worksheets and slides, automatically transforming them into accessible formats.</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <div class="use-case-icon">🎓</div>
+                        <div class="use-case-badge">Higher-Ed</div>
+                    </div>
+                    <h4>Inclusive Lecture Content</h4>
+                    <p>Professors can ensure lecture notes, research papers, and lab manuals meet accessibility standards.</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <div class="use-case-icon">📚</div>
+                        <div class="use-case-badge">Self-Learning</div>
+                    </div>
+                    <h4>Personal Study Support</h4>
+                    <p>Independent learners can convert articles and ebooks into dyslexia-friendly and TTS-ready formats.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section style="padding: 5rem 2rem; background: linear-gradient(180deg, rgba(0, 102, 204, 0.02), var(--color-background));">
+        <div class="container">
+            <div class="cta-section">
+                <div class="cta-circle-1"></div>
+                <div class="cta-circle-2"></div>
+                <div class="cta-content">
+                    <div class="cta-badge">
+                        <span>🔒</span>
+                        <span>Privacy-first</span>
+                        <span>•</span>
+                        <span>WCAG AA</span>
+                        <span>•</span>
+                        <span>Ready for classrooms</span>
+                    </div>
+                    <h3>Start transforming your learning materials today</h3>
+                    <p>Join educators and learners creating inclusive experiences with Accessibility Learning Hub.</p>
+                    <div class="hero-buttons" style="justify-content: center;">
+                        <button class="btn btn-white" onclick="alert('Get Started!')">Get Started</button>
+                        <button class="btn btn-outline-white" onclick="alert('Talk to us!')">Talk to our team</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <div class="logo-icon">♿</div>
+                    <div>
+                        <h3>Accessibility Hub</h3>
+                        <p>Learning for All</p>
+                    </div>
+                </div>
+                <p>Making education accessible through thoughtful design and inclusive technology.</p>
+            </div>
+            <div class="footer-section">
+                <h5>Platform</h5>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#upload">Upload</a></li>
+                    <li><a href="#use-cases">Use Cases</a></li>
+                    <li><a href="#">Pricing</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h5>Resources</h5>
+                <ul>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Accessibility Guides</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h5>Connect</h5>
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                    <a href="#" class="social-link" aria-label="LinkedIn">💼</a>
+                    <a href="#" class="social-link" aria-label="GitHub">💻</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Accessibility Learning Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</body>
+</html>
